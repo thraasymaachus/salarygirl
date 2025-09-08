@@ -1,0 +1,105 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2c6xuamb26pa"]
+
+[ext_resource type="Script" uid="uid://byfsteivtt8ak" path="res://scripts/StoryNode.gd" id="1_jxl1t"]
+
+[node name="Start the Story" type="Node"]
+script = ExtResource("1_jxl1t")
+text = "DAY 2"
+choices = Array[String](["Snooze that alarm", "It's time to get up"])
+
+[node name="Snooze Alarm" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "Salary girl hits the snooze button. Another 5 minutes, please."
+
+[node name="Second Alarm" type="Node" parent="Snooze Alarm"]
+script = ExtResource("1_jxl1t")
+text = "After what feels like seconds, the alarm rings again. Ueuuughhhh."
+choices = Array[String](["Snooze it AGAIN", "I guess I gotta get up some time..."])
+
+[node name="Snooze Alarm Again" type="Node" parent="Snooze Alarm/Second Alarm"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl sleeps through the workday, and get fired.
+
+END"
+
+[node name="Get Up Late" type="Node" parent="Snooze Alarm/Second Alarm"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl drags herself out of bed, and checks the time. 7:45am: She is running late."
+
+[node name="Choose Food" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl grabs some food to eat as she runs out the door"
+choices = Array[String](["Slice o' bread", "Mac n' cheese", "Eggs"])
+
+[node name="Bread" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
+script = ExtResource("1_jxl1t")
+text = "While Salary girl runs to work, she reflects on how she could have taken her car. C'est la vie."
+jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"
+
+[node name="Mac n Cheese" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
+script = ExtResource("1_jxl1t")
+text = "While Salary girl runs to work, she reflects on how she could have taken her car. C'est la vie."
+jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"
+
+[node name="Eggs" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
+script = ExtResource("1_jxl1t")
+text = "While Salary girl runs to work, she reflects on how she could have taken her car. C'est la vie."
+jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"
+
+[node name="Puppy" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl happens upon a puppy, looking so hungry."
+choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
+
+[node name="Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
+script = ExtResource("1_jxl1t")
+text = "The puppy smiles at Salary girl. Her tummy rumbles."
+choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
+jumpToNode = "Get to Work"
+
+[node name="Don\'t Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
+script = ExtResource("1_jxl1t")
+text = "The puppy frowns. He'll probably be OK, though"
+choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
+jumpToNode = "Get to Work"
+
+[node name="Get Up" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "Salary girl emerges from bed. Rays of light creep into her room. After getting ready, she gets in her car to drive to work."
+
+[node name="Cyclist" type="Node" parent="Get Up"]
+script = ExtResource("1_jxl1t")
+text = "While driving, a cyclist skitters around Salary girl's car like a spider"
+choices = Array[String](["Hit the cyclist", "Follow the road rules"])
+
+[node name="Hit Cyclist" type="Node" parent="Get Up/Cyclist"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl veers into the cyclist, and he's trampled beneath the wheels of her 2009 Toyota Camry"
+choices = Array[String](["Someone sees (TO MAKE PROBABILISTIC)", "No one notices Someone sees (TO MAKE PROBABILISTIC)"])
+
+[node name="Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
+script = ExtResource("1_jxl1t")
+text = "Someone calls the police, and Salary girl is swiftly arrested. She goes to jail.
+
+END"
+
+[node name="Avoid Cyclist" type="Node" parent="Get Up/Cyclist"]
+script = ExtResource("1_jxl1t")
+text = "Salary girl uses her patience and good nature to not hit the cyclist. The rest of the drive to work is uneventful."
+jumpToNode = "Get to Work"
+
+[node name="Get to Work" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "You make it to work safe. Nice job"
+
+[node name="Disciplinary Meeting" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+
+[node name="Lunch" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+
+[node name="End of Work" type="Node" parent="."]
+script = ExtResource("1_jxl1t")
+text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
