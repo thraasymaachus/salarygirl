@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://2qpqrvxljxsw"]
+
+[ext_resource type="VideoStream" uid="uid://cir1bv11xeoly" path="res://art/intro/davinci.ogv" id="1_ots34"]
+[ext_resource type="Script" uid="uid://b0iwjmbfru0u4" path="res://intro_video.gd" id="2_qn1rc"]
+[ext_resource type="VideoStream" uid="uid://chq5w4vvobuje" path="res://art/intro/davinci_loop.ogv" id="3_1n0d2"]
+
+[node name="Start" type="Node"]
+
+[node name="IntroVideo" type="VideoStreamPlayer" parent="."]
+offset_right = 535.0
+offset_bottom = 251.0
+stream = ExtResource("1_ots34")
+autoplay = true
+script = ExtResource("2_qn1rc")
+first_video = ExtResource("1_ots34")
+loop_video = ExtResource("3_1n0d2")
