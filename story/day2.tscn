@@ -55,6 +55,7 @@ choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed t
 script = ExtResource("1_jxl1t")
 text = "The puppy smiles at Salary girl. Her tummy rumbles."
 choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
+karma = 10
 jumpToNode = "Get to Work"
 
 [node name="Don\'t Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
@@ -76,16 +77,24 @@ choices = Array[String](["Hit the cyclist", "Follow the road rules"])
 script = ExtResource("1_jxl1t")
 text = "Salary girl veers into the cyclist, and he's trampled beneath the wheels of her 2009 Toyota Camry"
 choices = Array[String](["Someone sees (TO MAKE PROBABILISTIC)", "No one notices Someone sees (TO MAKE PROBABILISTIC)"])
+karma = -45
 
 [node name="Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
 script = ExtResource("1_jxl1t")
 text = "Someone calls the police, and Salary girl is swiftly arrested. She goes to jail.
 
 END"
+jumpToNode = "Get to Work"
+
+[node name="No Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
+script = ExtResource("1_jxl1t")
+text = "No one happens to notice. Yay!"
+jumpToNode = "Get to Work"
 
 [node name="Avoid Cyclist" type="Node" parent="Get Up/Cyclist"]
 script = ExtResource("1_jxl1t")
 text = "Salary girl uses her patience and good nature to not hit the cyclist. The rest of the drive to work is uneventful."
+karma = 5
 jumpToNode = "Get to Work"
 
 [node name="Get to Work" type="Node" parent="."]
