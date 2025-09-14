@@ -23,6 +23,7 @@ func startStory():
 	start_beat = GlobalState.story_flow.instantiate()
 	current_beat = start_beat
 	narrate(current_beat)
+	choices_dialog.visible = false
 
 
 func narrate(beat):
@@ -50,9 +51,31 @@ func _on_advance_beat():
 
 func _on_choice_selected(index):
 	current_beat = current_beat.get_child(index)
-	narrate(current_beat)
-
+	if current_beat is CheckNode:
+		handleCheckNode(current_beat)
+	elif current_beat is StoryNode:
+		narrate(current_beat)
+	else:
+		push_error("Tried to go to invalid node type")
 
 func jumpToNode(path):
 	current_beat = start_beat.get_node(path)
 	narrate(current_beat)
+
+func handleCheckNode(beat):
+	var random_float = randf()
+	var index = -1
+	
+	#var paths = beat.paths
+	var prob_dist = beat.prob_dist
+	var num_items = prob_dist.size()
+
+	var sum = 0
+	
+	for i in range(num_items):
+		sum += prob_dist[i]
+		if random_float < prob_dist[i]:
+			index = i
+			break
+			
+	jumpToNode(beat.paths[index])

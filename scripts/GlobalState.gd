@@ -7,9 +7,14 @@ var day: int = 1
 
 # Player vars
 var mental_health: int = 100
-var money: int = 30
+var money: int = 20
 var karma: int = 0
 
+# Flags
+
+# Test Flags
+var hasEgg: bool = false
+var hasShovel: bool = true
 
 
 

@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cstmar211pvqk"]
+[gd_scene load_steps=12 format=3 uid="uid://cstmar211pvqk"]
 
 [ext_resource type="Script" uid="uid://llemomb5pi56" path="res://scripts/Game.gd" id="1_dlrd2"]
 [ext_resource type="Script" uid="uid://bbjvrv5w5u77c" path="res://scripts/Story.gd" id="2_eu8vd"]
+[ext_resource type="VideoStream" uid="uid://cir1bv11xeoly" path="res://art/intro/davinci.ogv" id="2_j5wjh"]
 [ext_resource type="Script" uid="uid://bawlq1cobpif7" path="res://scripts/ui/NarrationDialog.gd" id="3_do1k0"]
+[ext_resource type="Script" uid="uid://b0iwjmbfru0u4" path="res://scripts/intro_video.gd" id="3_vef74"]
+[ext_resource type="VideoStream" uid="uid://chq5w4vvobuje" path="res://art/intro/davinci_loop.ogv" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://bwiuiomqoeg54" path="res://scripts/ui/StatusBar.gd" id="4_ryrav"]
 [ext_resource type="Script" uid="uid://deidpbpa7sqkq" path="res://scripts/ui/ChoicesDialog.gd" id="4_um3na"]
 
@@ -17,6 +20,7 @@ bg_color = Color(0.192157, 0.192157, 0.192157, 1)
 script = ExtResource("1_dlrd2")
 
 [node name="Title Screen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,35 +28,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="New Game Button" type="Button" parent="Title Screen"]
+[node name="New Game Prompt" type="Label" parent="Title Screen"]
+z_index = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.5
-offset_top = -25.0
-offset_right = 97.5
-offset_bottom = 25.0
+anchor_bottom = 1.0
+offset_left = -158.5
+offset_top = -109.0
+offset_right = 166.5
+offset_bottom = -59.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 30
-text = "Start"
+text = "Press Any Key to Start"
 
-[node name="Label" type="Label" parent="Title Screen"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -129.0
-offset_top = 205.0
-offset_right = 138.0
-offset_bottom = 277.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "Salary Girl"
+[node name="IntroVideo" type="VideoStreamPlayer" parent="Title Screen"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1078.0
+stream = ExtResource("2_j5wjh")
+autoplay = true
+script = ExtResource("3_vef74")
+first_video = ExtResource("2_j5wjh")
+loop_video = ExtResource("4_hve3p")
 
 [node name="Story Screen" type="Control" parent="."]
 visible = false
@@ -104,10 +106,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -543.0
-offset_top = -300.0
-offset_right = 544.0
-offset_bottom = -160.0
+offset_left = -743.0
+offset_top = -427.0
+offset_right = 744.0
+offset_bottom = -282.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_do1k0")
@@ -143,9 +145,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -543.5
-offset_top = 570.0
+offset_top = 820.0
 offset_right = 543.5
-offset_bottom = 655.0
+offset_bottom = 905.0
 grow_horizontal = 2
 script = ExtResource("4_um3na")
 
@@ -169,7 +171,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_q0j8i")
 text = "Choice"
 alignment = 0
 
-[connection signal="pressed" from="Title Screen/New Game Button" to="." method="_on_new_game_button_pressed"]
 [connection signal="END_OF_DAY" from="Story Screen" to="." method="_on_end_of_day"]
 [connection signal="END_OF_STORY" from="Story Screen" to="." method="_on_end_of_story"]
 [connection signal="ADVANCE_BEAT" from="Story Screen/Narration Dialog" to="Story Screen" method="_on_advance_beat"]

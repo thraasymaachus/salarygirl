@@ -1,20 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct6362a458c6s"]
+[gd_scene load_steps=3 format=3 uid="uid://ct6362a458c6s"]
 
 [ext_resource type="Script" uid="uid://byfsteivtt8ak" path="res://scripts/StoryNode.gd" id="1_7amp7"]
+[ext_resource type="Script" uid="uid://bnojy1tfv5ys" path="res://scripts/CheckNode.gd" id="2_0viuc"]
 
 [node name="Start the Story" type="Node"]
 script = ExtResource("1_7amp7")
 text = "Salary girl wakes up to the ringing of her alarm. The sky outside is dark."
-choices = Array[String](["Snooze that alarm.", "It's time to get up."])
+choices = Array[String](["Snooze that alarm.", "Get up.", "Probability Test"])
 
 [node name="Snooze Alarm" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "Salary girl hits the snooze button. Another 5 minutes, please."
+jumpToNode = "Snooze Alarm/Second Alarm"
 
 [node name="Second Alarm" type="Node" parent="Snooze Alarm"]
 script = ExtResource("1_7amp7")
 text = "After what feels like seconds, the alarm rings again. Ueuuughhhh."
-choices = Array[String](["Snooze it AGAIN.", "I guess I gotta get up some time..."])
 
 [node name="Snooze Alarm Again" type="Node" parent="Snooze Alarm/Second Alarm"]
 script = ExtResource("1_7amp7")
@@ -29,7 +30,6 @@ text = "Salary girl drags herself out of bed, and checks the time. 7:45am: She i
 [node name="Choose Food" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late"]
 script = ExtResource("1_7amp7")
 text = "Salary girl grabs some food to eat as she runs out the door"
-choices = Array[String](["Slice o' bread.", "Mac n' cheese.", "Eggs."])
 
 [node name="Bread" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
 script = ExtResource("1_7amp7")
@@ -49,44 +49,103 @@ jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"
 [node name="Puppy" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
 script = ExtResource("1_7amp7")
 text = "Salary girl happens upon a puppy, looking so hungry."
-choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
 
 [node name="Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
 script = ExtResource("1_7amp7")
 text = "The puppy smiles at Salary girl. Her tummy rumbles."
-choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
 jumpToNode = "Get to Work"
 
 [node name="Don\'t Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
 script = ExtResource("1_7amp7")
 text = "The puppy frowns. He'll probably be OK, though."
-choices = Array[String](["Feed the puppy some of your mouth food", "Don't feed the puppy. Girl's gotta eat."])
 jumpToNode = "Get to Work"
 
 [node name="Get Up" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "Salary girl emerges from bed. Rays of light creep into her room. After getting ready, she gets in her car to drive to work."
+jumpToNode = "Get Up/Cyclist"
 
 [node name="Cyclist" type="Node" parent="Get Up"]
 script = ExtResource("1_7amp7")
 text = "While driving, a cyclist skitters around Salary girl's car like a spider."
-choices = Array[String](["Hit the cyclist.", "Follow the road rules."])
 
 [node name="Hit Cyclist" type="Node" parent="Get Up/Cyclist"]
 script = ExtResource("1_7amp7")
 text = "Salary girl veers into the cyclist, and he's trampled beneath the wheels of her 2009 Toyota Camry."
-choices = Array[String](["Someone sees (TO MAKE PROBABILISTIC)", "No one notices Someone sees (TO MAKE PROBABILISTIC)"])
+jumpToNode = "Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"
 
-[node name="Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
+[node name="Check to Avoid Police" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
+script = ExtResource("2_0viuc")
+prob_dist = Array[float]([0.0, 0.0])
+metadata/_custom_type_script = "uid://bnojy1tfv5ys"
+
+[node name="Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"]
 script = ExtResource("1_7amp7")
-text = "Someone calls the police, and Salary girl is swiftly arrested. She goes to jail.
+text = "Someone calls the police, and Salary girl is swiftly arrested. She goes to jail."
+jumpToNode = "Game Over"
 
-END"
+[node name="Avoid Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"]
+script = ExtResource("1_7amp7")
+text = "No one happens to notice. Yay!"
+jumpToNode = "Get to Work"
 
 [node name="Avoid Cyclist" type="Node" parent="Get Up/Cyclist"]
 script = ExtResource("1_7amp7")
 text = "Salary girl uses her patience and good nature to not hit the cyclist. The rest of the drive to work is uneventful."
 jumpToNode = "Get to Work"
+
+[node name="Check Probability Test" type="Node" parent="."]
+script = ExtResource("2_0viuc")
+paths = Array[String](["Check Probability Test/Heads", "Check Probability Test/Tails"])
+prob_dist = Array[float]([0.5, 0.5])
+metadata/_custom_type_script = "uid://bnojy1tfv5ys"
+
+[node name="Heads" type="Node" parent="Check Probability Test"]
+script = ExtResource("1_7amp7")
+text = "You got heads"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="Tails" type="Node" parent="Check Probability Test"]
+script = ExtResource("1_7amp7")
+text = "You got tails"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="Hidden and Grayed Options" type="Node" parent="."]
+script = ExtResource("1_7amp7")
+choices = Array[String](["A", "[Money > 30] B", "[Karma > 0] C", "[Shovel] D", "[Egg] E"])
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="A" type="Node" parent="Hidden and Grayed Options"]
+script = ExtResource("1_7amp7")
+text = "You picked option A"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="B" type="Node" parent="Hidden and Grayed Options"]
+script = ExtResource("1_7amp7")
+text = "You picked option B"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="C" type="Node" parent="Hidden and Grayed Options"]
+script = ExtResource("1_7amp7")
+text = "You picked option C"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="D" type="Node" parent="Hidden and Grayed Options"]
+script = ExtResource("1_7amp7")
+text = "You picked option D"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
+
+[node name="E" type="Node" parent="Hidden and Grayed Options"]
+script = ExtResource("1_7amp7")
+text = "You picked option E"
+jumpToNode = "."
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
 
 [node name="Get to Work" type="Node" parent="."]
 script = ExtResource("1_7amp7")
@@ -96,7 +155,6 @@ jumpToNode = "Get to Work/Meeting Sharon"
 [node name="Meeting Sharon" type="Node" parent="Get to Work"]
 script = ExtResource("1_7amp7")
 text = "Sharon complains about her kids, by the printer."
-choices = Array[String](["Endure it.", "Try to help her with her problems.", "Brush her off.", "[CONDITIONAL] Offer her your mouth food."])
 
 [node name="Endure It" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
@@ -124,7 +182,6 @@ script = ExtResource("1_7amp7")
 text = "Salary girl yanks the {whatever food was chosen} from her mouth and offers it up to Sharon.
 
 At first, she's stunned."
-choices = Array[String](["THIS SHOULD BE PROBABILISTIC No Carbs", "THIS SHOULD BE PROBABILISTIC Thanks"])
 karma = 10
 
 [node name="No Carbs" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood"]
@@ -145,31 +202,26 @@ jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
 [node name="Computer Time" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
 text = "Computer time. whacha doing?"
-choices = Array[String](["Search the web.", "Slack off...", "Write some e mail."])
 
 [node name="Search" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
 script = ExtResource("1_7amp7")
 text = "Ok buddy. What do you want to search for?"
-choices = Array[String](["Current events.", "Heartwarming videos.", "How do i build a bomb."])
 
 [node name="Current Events" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "Salary girl scrolls through the news. It's not good."
-choices = Array[String](["Current events.", "Heartwarming videos.", "How do i build a bomb."])
 mental_health = -3
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
 [node name="Heartwarming Vids" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "A blind monkey learns to love. A mouse gets a succesful louse transplant. "
-choices = Array[String](["Current events.", "Heartwarming videos.", "How do i build a bomb."])
 mental_health = 2
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
 [node name="Bomb" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "Salary girl learns how to build a bomb. She will need 1 kg of magnesium surfaldihyde, to 4 kg of liquid nitrogen."
-choices = Array[String](["Current events.", "Heartwarming videos.", "How do i build a bomb."])
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
 [node name="Popup" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
@@ -177,51 +229,43 @@ script = ExtResource("1_7amp7")
 text = "A popup hits the screen
 
 \"Make money fast? It can be you\""
-choices = Array[String](["(PROBABILISTIC) Try to close it (80% to go to lunch. 10% to go to virus. 10% chance to go to win)", "Make some $$$ (50/50 to go to Virus or Win)"])
 
 [node name="Win" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "It's not a scam. hoorah. $200 earned"
-choices = Array[String](["Click it", ""])
 money = 200
 jumpToNode = "Lunch"
 
 [node name="Virus" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "BZZdD. Salary girl hears the crackle of electricity in the air, as the screens in her office all turn red. Computer virus."
-choices = Array[String](["Click it", ""])
 jumpToNode = "Disciplinary Meeting"
 
 [node name="Game" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
 script = ExtResource("1_7amp7")
 text = "MAKE THIS NODE INTO A REAL GAME."
-choices = Array[String](["Search the web.", "Slack off...", "Write some e mail."])
 
 [node name="Suspicion" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game"]
 script = ExtResource("1_7amp7")
 text = "Salary girl's manager, Gina, walks past her desk.
 
 (50/50 chance to go to discilpinary meeting or lunch)"
-choices = Array[String](["PROBABILISTIC Caught.", "PROBABILISTIC Not caught."])
 
 [node name="Caught" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game/Suspicion"]
 script = ExtResource("1_7amp7")
 text = "Gina makes a loud ass grunt, and Salary girl whips her head around.
 
 \"Disciplinary meeting, now!\""
-choices = Array[String](["PROBABILISTIC Caught.", "PROBABILISTIC Not caught."])
 jumpToNode = "Disciplinary Meeting"
 
 [node name="Not Caught" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game/Suspicion"]
 script = ExtResource("1_7amp7")
 text = "Gina walks by, none the wiser. A smirk curls onto Salary girl's nice face."
-choices = Array[String](["PROBABILISTIC Caught.", "PROBABILISTIC Not caught."])
 jumpToNode = "Lunch"
 
 [node name="Mail" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
 script = ExtResource("1_7amp7")
 text = "Who are u emailing?"
-choices = Array[String](["Sharon Welks", "Manager Gina Olsen", "Godwin \"Freak\" Voss"])
 
 [node name="Sharon" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail"]
 script = ExtResource("1_7amp7")
@@ -245,19 +289,16 @@ jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"
 [node name="Gina Reply" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina"]
 script = ExtResource("1_7amp7")
 text = "Reply from gina. based on the tone/content, you can get a raise, improve standing with gina, or need to go for a disciplinary meeeting right now."
-choices = Array[String](["DEPENDS ON MAIL Lunch.", "DEPENDS ON MAIL Disciplinary Meeting."])
 
 [node name="golunch" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"]
 script = ExtResource("1_7amp7")
 text = "You head to the lunchroom
 "
-choices = Array[String](["DEPENDS ON MAIL Lunch.", "DEPENDS ON MAIL Disciplinary Meeting."])
 jumpToNode = "Lunch"
 
 [node name="gomeeting" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"]
 script = ExtResource("1_7amp7")
 text = "You head to the discipline room."
-choices = Array[String](["DEPENDS ON MAIL Lunch.", "DEPENDS ON MAIL Disciplinary Meeting."])
 jumpToNode = "Disciplinary Meeting"
 
 [node name="Godwin" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail"]
@@ -283,3 +324,7 @@ text = "You open the mailbox.  Inside is a pile of junk mail from a different ga
 [node name="End of Work" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+
+[node name="Game Over" type="Node" parent="."]
+script = ExtResource("1_7amp7")
+metadata/_custom_type_script = "uid://byfsteivtt8ak"
