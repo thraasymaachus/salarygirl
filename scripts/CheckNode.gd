@@ -2,14 +2,14 @@ extends Node
 
 class_name CheckNode
 
-@export_multiline var text:String = "This shouldn't be here"
-#@export var choices:Array[String]
-# I don't forsee clicking on a checknode choice leading to a change in stats by itself, but I'll keep these here
-@export var mental_health:int
-@export var money:int
-@export var karma:int
+# These aren't used, but might avoid a crash if a CheckNode is interpreted as a StoryNode
+@export_multiline var text:String = ""
+@export var jumpToNode:String = ""
 
-# paths contains the different paths to the nodes that could happen
-@export var paths:Array[String]
+
+@export var choices:Array[Choice] = []
 # prob_dist is the chance of getting option 1, 2, etc. Must add to 1
 @export var prob_dist:Array[float]
+
+@export var eod:bool = false
+@export var game_over:bool = false

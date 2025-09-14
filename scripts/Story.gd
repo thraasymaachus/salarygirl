@@ -1,6 +1,7 @@
 extends Control
 
 signal END_OF_STORY
+signal GAME_OVER
 signal END_OF_DAY
 
 @onready var narration_dialog = $"Narration Dialog"
@@ -33,49 +34,46 @@ func narrate(beat):
 
 
 func _on_advance_beat():
-	if (current_beat.jumpToNode != ""):
-		jumpToNode(current_beat.jumpToNode)
-	else:			
-		if (current_beat.get_child_count() == 0):
+	# Game over
+	if (current_beat.game_over):
+			GAME_OVER.emit()
+	# End of the day
+	if (current_beat.eod):
 			END_OF_DAY.emit()
-		else:
-			if (current_beat.choices.size() > 0):
-				narration_dialog.get_node("MarginContainer/VBoxContainer/Advance Button").visible = false
-				choices_dialog.visible = true
-				choices_dialog.choices = current_beat.choices
-			else:
-				choices_dialog.visible = false
-				current_beat = current_beat.get_child(0)
-				narrate(current_beat)
+	# No choices: move directly on to the next node
+	elif (current_beat.jumpToNode != ""): # Check if there's a node that should always immediately follow
+		current_beat = start_beat.get_node(current_beat.jumpToNode)
+		narrate(current_beat)
+	else:
+		if (current_beat.choices.size() > 0):
+			narration_dialog.get_node("MarginContainer/VBoxContainer/Advance Button").visible = false
+			choices_dialog.visible = true
+			choices_dialog.choices = current_beat.choices
 
 
-func _on_choice_selected(index):
-	current_beat = current_beat.get_child(index)
+func _on_choice_selected(choice_index: int) -> void:
+	var ch: Choice = current_beat.choices[choice_index]
+	GlobalState.apply_choice_effects(ch)
+	choices_dialog.visible = false
+	
+	current_beat = start_beat.get_node(ch.target_path)
+	
 	if current_beat is CheckNode:
 		handleCheckNode(current_beat)
 	elif current_beat is StoryNode:
 		narrate(current_beat)
-	else:
-		push_error("Tried to go to invalid node type")
-
-func jumpToNode(path):
-	current_beat = start_beat.get_node(path)
-	narrate(current_beat)
 
 func handleCheckNode(beat):
+	# Uses probability to determine which outcome should happen
 	var random_float = randf()
 	var index = -1
-	
-	#var paths = beat.paths
 	var prob_dist = beat.prob_dist
 	var num_items = prob_dist.size()
-
 	var sum = 0
-	
 	for i in range(num_items):
 		sum += prob_dist[i]
 		if random_float < prob_dist[i]:
 			index = i
 			break
 			
-	jumpToNode(beat.paths[index])
+	_on_choice_selected(index)

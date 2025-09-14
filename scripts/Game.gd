@@ -6,12 +6,14 @@ var canStart := false
 
 @onready var title_screen = $"Title Screen"
 @onready var story_screen = $"Story Screen"
+@onready var game_over_screen = $"Game Over Screen"
 @onready var start_message = $"Title Screen/New Game Prompt"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	title_screen.visible = true
 	story_screen.visible = false
+	game_over_screen.visible = false
 	start_message.visible = false
 	await get_tree().create_timer(5.0).timeout
 	canStart = true
@@ -30,6 +32,7 @@ func _input(event):
 func _on_end_of_story():
 	title_screen.visible = true
 	story_screen.visible = false
+	# Display again/quit buttons on end of story splash image
 
 
 func _on_end_of_day() -> void:
@@ -40,3 +43,7 @@ func _on_end_of_day() -> void:
 	NEW_DAY.emit()
 	story_screen.visible = true
 	story_screen.startStory()
+	
+func _on_game_over() -> void:
+	story_screen.visible = false
+	game_over_screen.visible = true
