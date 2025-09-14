@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://ct6362a458c6s"]
+[gd_scene load_steps=31 format=3 uid="uid://ct6362a458c6s"]
 
 [ext_resource type="Script" uid="uid://byfsteivtt8ak" path="res://scripts/StoryNode.gd" id="1_7amp7"]
 [ext_resource type="Script" uid="uid://bnojy1tfv5ys" path="res://scripts/CheckNode.gd" id="2_0viuc"]
 [ext_resource type="Script" uid="uid://dnesk0ux1jjcr" path="res://scripts/Choice.gd" id="2_tv5ry"]
+[ext_resource type="Script" uid="uid://3jeoxw2or0uv" path="res://scripts/Condition.gd" id="4_wfq44"]
 
 [sub_resource type="Resource" id="Resource_wfq44"]
 script = ExtResource("2_tv5ry")
 text = "Snooze the alarm."
 target_path = "Snooze Alarm"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -24,7 +25,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "It's time to get up."
 target_path = "Get Up"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -40,7 +41,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Probability Test"
 target_path = "Check Probability Test"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -56,7 +57,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Hidden and Grayed Options"
 target_path = "Hidden and Grayed Options"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -72,7 +73,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Snooze it again."
 target_path = "Snooze Alarm/Second Alarm/Snooze Alarm Again"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -88,7 +89,151 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Time to get up..."
 target_path = "Snooze Alarm/Second Alarm/Get Up Late"
-fail_behavior = 2
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_e6w8q"]
+script = ExtResource("2_tv5ry")
+text = "Bread."
+target_path = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Bread"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String](["Bread"])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_rh8t3"]
+script = ExtResource("2_tv5ry")
+text = "Mac n Cheese."
+target_path = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Mac n Cheese"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String](["Mac n Cheese"])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_pp57r"]
+script = ExtResource("2_tv5ry")
+text = "Eggs."
+target_path = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Eggs"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String](["Eggs"])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_ap7pd"]
+script = ExtResource("2_tv5ry")
+text = "Feed."
+target_path = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy/Feed"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String](["puppy1fed"])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String](["Bread", "Eggs", "Mac n Cheese"])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_mwmoi"]
+script = ExtResource("2_tv5ry")
+text = "Don't feed."
+target_path = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy/Don't Feed"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = -10
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_5vpaq"]
+script = ExtResource("2_tv5ry")
+text = "Hit the cyclist with car."
+target_path = "Get Up/Cyclist/Hit Cyclist"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = -45
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_xq4tt"]
+script = ExtResource("2_tv5ry")
+text = "Respect the road rules."
+target_path = "Get Up/Cyclist/Hit Cyclist"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_o2u7r"]
+script = ExtResource("2_tv5ry")
+text = ""
+target_path = "Get Up/Cyclist/Hit Cyclist/Check to Avoid Police/Jail"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_pflpr"]
+script = ExtResource("2_tv5ry")
+text = ""
+target_path = "Get Up/Cyclist/Hit Cyclist/Check to Avoid Police/Avoid Jail"
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -104,7 +249,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Heads"
 target_path = "Check Probability Test/Heads"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -120,7 +265,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "Tails (AAAAAAAAAA)"
 target_path = "Check Probability Test/Tails"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -136,7 +281,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "A"
 target_path = "Hidden and Grayed Options/A"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -152,8 +297,88 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("2_tv5ry")
 text = "B"
 target_path = "Hidden and Grayed Options/B"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_14e54"]
+script = ExtResource("4_wfq44")
+require_all_flags = Array[String]([])
+require_any_flags = Array[String]([])
+forbid_flags = Array[String]([])
+min_mental_health = -999999
+min_money = 1000
+min_karma = -999999
+custom_check = ""
+metadata/_custom_type_script = "uid://3jeoxw2or0uv"
+
+[sub_resource type="Resource" id="Resource_ly5dj"]
+script = ExtResource("4_wfq44")
+require_all_flags = Array[String]([])
+require_any_flags = Array[String]([])
+forbid_flags = Array[String]([])
+min_mental_health = -999999
+min_money = -999999
+min_karma = -999999
+custom_check = ""
+metadata/_custom_type_script = "uid://3jeoxw2or0uv"
+
+[sub_resource type="Resource" id="Resource_dm7ox"]
+script = ExtResource("2_tv5ry")
+text = "C"
+target_path = "Hidden and Grayed Options/C"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+show_if = SubResource("Resource_ly5dj")
+enable_if = SubResource("Resource_14e54")
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_osd4s"]
+script = ExtResource("4_wfq44")
+require_all_flags = Array[String]([])
+require_any_flags = Array[String]([])
+forbid_flags = Array[String]([])
+min_mental_health = -999999
+min_money = 1000
+min_karma = -999999
+custom_check = ""
+metadata/_custom_type_script = "uid://3jeoxw2or0uv"
+
+[sub_resource type="Resource" id="Resource_rgtqb"]
+script = ExtResource("4_wfq44")
+require_all_flags = Array[String]([])
+require_any_flags = Array[String]([])
+forbid_flags = Array[String]([])
+min_mental_health = -999999
+min_money = 10000
+min_karma = -999999
+custom_check = ""
+metadata/_custom_type_script = "uid://3jeoxw2or0uv"
+
+[sub_resource type="Resource" id="Resource_ta6av"]
+script = ExtResource("2_tv5ry")
+text = "D"
+target_path = "Hidden and Grayed Options/D"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+show_if = SubResource("Resource_rgtqb")
+enable_if = SubResource("Resource_osd4s")
 delta_mental_health = 0
 delta_money = 0
 delta_karma = 0
@@ -166,41 +391,9 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 
 [sub_resource type="Resource" id="Resource_8fqg8"]
 script = ExtResource("2_tv5ry")
-text = "C"
-target_path = "Hidden and Grayed Options/C"
-fail_behavior = 2
-disabled_reason = "You can’t do that right now."
-delta_mental_health = 0
-delta_money = 0
-delta_karma = 0
-add_flags = Array[String]([])
-remove_flags = Array[String]([])
-add_items = Array[String]([])
-remove_items = Array[String]([])
-on_select_hook = ""
-metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
-
-[sub_resource type="Resource" id="Resource_dm7ox"]
-script = ExtResource("2_tv5ry")
-text = "D"
-target_path = "Hidden and Grayed Options/D"
-fail_behavior = 2
-disabled_reason = "You can’t do that right now."
-delta_mental_health = 0
-delta_money = 0
-delta_karma = 0
-add_flags = Array[String]([])
-remove_flags = Array[String]([])
-add_items = Array[String]([])
-remove_items = Array[String]([])
-on_select_hook = ""
-metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
-
-[sub_resource type="Resource" id="Resource_ta6av"]
-script = ExtResource("2_tv5ry")
 text = "E"
 target_path = "Hidden and Grayed Options/E"
-fail_behavior = 2
+fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
 delta_money = 0
@@ -237,10 +430,12 @@ game_over = true
 [node name="Get Up Late" type="Node" parent="Snooze Alarm/Second Alarm"]
 script = ExtResource("1_7amp7")
 text = "Salary girl drags herself out of bed, and checks the time. 7:45am: She is running late."
+jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food"
 
 [node name="Choose Food" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late"]
 script = ExtResource("1_7amp7")
 text = "Salary girl grabs some food to eat as she runs out the door"
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_e6w8q"), SubResource("Resource_rh8t3"), SubResource("Resource_pp57r")])
 
 [node name="Bread" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
 script = ExtResource("1_7amp7")
@@ -260,6 +455,7 @@ jumpToNode = "Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"
 [node name="Puppy" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food"]
 script = ExtResource("1_7amp7")
 text = "Salary girl happens upon a puppy, looking so hungry."
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_ap7pd"), SubResource("Resource_mwmoi")])
 
 [node name="Feed" type="Node" parent="Snooze Alarm/Second Alarm/Get Up Late/Choose Food/Puppy"]
 script = ExtResource("1_7amp7")
@@ -279,6 +475,7 @@ jumpToNode = "Get Up/Cyclist"
 [node name="Cyclist" type="Node" parent="Get Up"]
 script = ExtResource("1_7amp7")
 text = "While driving, a cyclist skitters around Salary girl's car like a spider."
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_5vpaq"), SubResource("Resource_xq4tt")])
 
 [node name="Hit Cyclist" type="Node" parent="Get Up/Cyclist"]
 script = ExtResource("1_7amp7")
@@ -287,13 +484,15 @@ jumpToNode = "Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"
 
 [node name="Check to Avoid Police" type="Node" parent="Get Up/Cyclist/Hit Cyclist"]
 script = ExtResource("2_0viuc")
-prob_dist = Array[float]([0.0, 0.0])
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_o2u7r"), SubResource("Resource_pflpr")])
+prob_dist = Array[float]([0.5, 0.5])
 metadata/_custom_type_script = "uid://bnojy1tfv5ys"
 
 [node name="Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"]
 script = ExtResource("1_7amp7")
 text = "Someone calls the police, and Salary girl is swiftly arrested. She goes to jail."
 jumpToNode = "Game Over"
+game_over = true
 
 [node name="Avoid Jail" type="Node" parent="Get Up/Cyclist/Hit Cyclist/Check to Avoid Police"]
 script = ExtResource("1_7amp7")
@@ -308,7 +507,7 @@ jumpToNode = "Get to Work"
 [node name="Check Probability Test" type="Node" parent="."]
 script = ExtResource("2_0viuc")
 choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_gs7le"), SubResource("Resource_lh6ea")])
-prob_dist = Array[float]([0.0, 0.0])
+prob_dist = Array[float]([0.5, 0.5])
 metadata/_custom_type_script = "uid://bnojy1tfv5ys"
 
 [node name="Heads" type="Node" parent="Check Probability Test"]
@@ -327,11 +526,11 @@ metadata/_custom_type_script = "uid://byfsteivtt8ak"
 script = ExtResource("1_7amp7")
 text = "Pick a letter
 A (normal)
-B
-C
-D
-E"
-choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_q0hhj"), SubResource("Resource_o148k"), SubResource("Resource_8fqg8"), SubResource("Resource_dm7ox"), SubResource("Resource_ta6av")])
+B (normal)
+C (greyed)
+D (hidden)
+E (normal)"
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_q0hhj"), SubResource("Resource_o148k"), SubResource("Resource_dm7ox"), SubResource("Resource_ta6av"), SubResource("Resource_8fqg8")])
 metadata/_custom_type_script = "uid://byfsteivtt8ak"
 
 [node name="A" type="Node" parent="Hidden and Grayed Options"]

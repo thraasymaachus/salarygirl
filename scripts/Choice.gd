@@ -7,7 +7,7 @@ class_name Choice
 
 # Visibility / availability
 enum FailBehavior { Always, HideIfFail, GreyIfFail }
-@export var fail_behavior: int = FailBehavior.GreyIfFail
+@export var fail_behavior: int = FailBehavior.HideIfFail
 
 @export var disabled_reason: String = "You can’t do that right now."
 
