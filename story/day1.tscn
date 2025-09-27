@@ -64,7 +64,7 @@ delta_money = 0
 delta_karma = 0
 add_flags = Array[String]([])
 remove_flags = Array[String]([])
-add_items = Array[String]([])
+add_items = Array[String](["Shovel", "Goomba"])
 remove_items = Array[String]([])
 on_select_hook = ""
 metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
@@ -314,8 +314,11 @@ script = ExtResource("4_wfq44")
 require_all_flags = Array[String]([])
 require_any_flags = Array[String]([])
 forbid_flags = Array[String]([])
+require_all_items = Array[String](["Shovel"])
+require_any_items = Array[String]([])
+forbid_items = Array[String]([])
 min_mental_health = -999999
-min_money = 1000
+min_money = -999999
 min_karma = -999999
 custom_check = ""
 metadata/_custom_type_script = "uid://3jeoxw2or0uv"
@@ -325,6 +328,9 @@ script = ExtResource("4_wfq44")
 require_all_flags = Array[String]([])
 require_any_flags = Array[String]([])
 forbid_flags = Array[String]([])
+require_all_items = Array[String]([])
+require_any_items = Array[String]([])
+forbid_items = Array[String]([])
 min_mental_health = -999999
 min_money = -999999
 min_karma = -999999
@@ -333,10 +339,10 @@ metadata/_custom_type_script = "uid://3jeoxw2or0uv"
 
 [sub_resource type="Resource" id="Resource_dm7ox"]
 script = ExtResource("2_tv5ry")
-text = "C"
+text = "[Shovel] C"
 target_path = "Hidden and Grayed Options/C"
 fail_behavior = 1
-disabled_reason = "You can’t do that right now."
+disabled_reason = "You don't have a shovel."
 show_if = SubResource("Resource_ly5dj")
 enable_if = SubResource("Resource_14e54")
 delta_mental_health = 0
@@ -354,6 +360,9 @@ script = ExtResource("4_wfq44")
 require_all_flags = Array[String]([])
 require_any_flags = Array[String]([])
 forbid_flags = Array[String]([])
+require_all_items = Array[String]([])
+require_any_items = Array[String]([])
+forbid_items = Array[String]([])
 min_mental_health = -999999
 min_money = 1000
 min_karma = -999999
@@ -365,6 +374,9 @@ script = ExtResource("4_wfq44")
 require_all_flags = Array[String]([])
 require_any_flags = Array[String]([])
 forbid_flags = Array[String]([])
+require_all_items = Array[String]([])
+require_any_items = Array[String]([])
+forbid_items = Array[String]([])
 min_mental_health = -999999
 min_money = 10000
 min_karma = -999999
@@ -409,16 +421,19 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("1_7amp7")
 text = "Salary girl wakes up to the ringing of her alarm. The sky outside is dark."
 choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_wfq44"), SubResource("Resource_tv5ry"), SubResource("Resource_wldhf"), SubResource("Resource_nnafw")])
+beat_art = "default.png"
 
 [node name="Snooze Alarm" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "Salary girl hits the snooze button. Another 5 minutes, please."
 jumpToNode = "Snooze Alarm/Second Alarm"
+beat_art = "testart.png"
 
 [node name="Second Alarm" type="Node" parent="Snooze Alarm"]
 script = ExtResource("1_7amp7")
 text = "After what feels like seconds, the alarm rings again. Ueuuughhhh."
 choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_87jn7"), SubResource("Resource_rd737")])
+beat_art = "default.png"
 
 [node name="Snooze Alarm Again" type="Node" parent="Snooze Alarm/Second Alarm"]
 script = ExtResource("1_7amp7")

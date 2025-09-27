@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cstmar211pvqk"]
+[gd_scene load_steps=15 format=3 uid="uid://cstmar211pvqk"]
 
 [ext_resource type="Script" uid="uid://llemomb5pi56" path="res://scripts/Game.gd" id="1_dlrd2"]
 [ext_resource type="Script" uid="uid://bbjvrv5w5u77c" path="res://scripts/Story.gd" id="2_eu8vd"]
@@ -8,6 +8,12 @@
 [ext_resource type="VideoStream" uid="uid://chq5w4vvobuje" path="res://art/intro/davinci_loop.ogv" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://bwiuiomqoeg54" path="res://scripts/ui/StatusBar.gd" id="4_ryrav"]
 [ext_resource type="Script" uid="uid://deidpbpa7sqkq" path="res://scripts/ui/ChoicesDialog.gd" id="4_um3na"]
+[ext_resource type="Texture2D" uid="uid://c58m5mg8t2cwq" path="res://art/item_sprites/shovel.png" id="7_hve3p"]
+[ext_resource type="Texture2D" uid="uid://baru3d4e3unax" path="res://art/beats/default.png" id="9_vef74"]
+
+[sub_resource type="GDScript" id="GDScript_vef74"]
+script/source = "extends Button
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un0en"]
 
@@ -57,7 +63,6 @@ first_video = ExtResource("2_j5wjh")
 loop_video = ExtResource("4_hve3p")
 
 [node name="Story Screen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,6 +70,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_eu8vd")
+
+[node name="Quit" type="Button" parent="Story Screen"]
+layout_mode = 2
+offset_left = 1817.0
+offset_top = 4.0
+offset_right = 1916.0
+offset_bottom = 61.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "Quit"
+script = SubResource("GDScript_vef74")
 
 [node name="Status Bar" type="PanelContainer" parent="Story Screen"]
 layout_mode = 1
@@ -77,6 +93,19 @@ offset_bottom = 60.0
 grow_horizontal = 2
 script = ExtResource("4_ryrav")
 
+[node name="Item Blown Up View" type="PanelContainer" parent="Story Screen/Status Bar"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Story Screen/Status Bar/Item Blown Up View"]
+layout_mode = 2
+
+[node name="Desc" type="Label" parent="Story Screen/Status Bar/Item Blown Up View"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Story Screen/Status Bar/Item Blown Up View"]
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="Story Screen/Status Bar"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
@@ -84,20 +113,25 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Story Screen/Status Bar/MarginContainer"]
+[node name="Stats" type="HBoxContainer" parent="Story Screen/Status Bar/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="MentalHealthLabel" type="Label" parent="Story Screen/Status Bar/MarginContainer/HBoxContainer"]
+[node name="MentalHealthLabel" type="Label" parent="Story Screen/Status Bar/MarginContainer/Stats"]
 layout_mode = 2
 text = "HP: "
 
-[node name="StrengthLabel" type="Label" parent="Story Screen/Status Bar/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "STR: "
-
-[node name="MoneyLabel" type="Label" parent="Story Screen/Status Bar/MarginContainer/HBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="Story Screen/Status Bar/MarginContainer/Stats"]
 layout_mode = 2
 text = "$: "
+
+[node name="Inventory" type="HBoxContainer" parent="Story Screen/Status Bar/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="ItemIcon" type="Button" parent="Story Screen/Status Bar/MarginContainer/Inventory"]
+layout_mode = 2
+icon = ExtResource("7_hve3p")
 
 [node name="Narration Dialog" type="PanelContainer" parent="Story Screen"]
 layout_mode = 1
@@ -171,6 +205,19 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_q0j8i")
 text = "Choice"
 alignment = 0
 
+[node name="Control" type="Control" parent="Story Screen"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="TextureRect" parent="Story Screen/Control"]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 65.0
+offset_right = 1537.0
+offset_bottom = 651.0
+texture = ExtResource("9_vef74")
+
 [node name="Game Over Screen" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -187,6 +234,7 @@ offset_bottom = 703.0
 text = "Again"
 
 [node name="Quit" type="Button" parent="Game Over Screen"]
+layout_mode = 0
 offset_left = 994.0
 offset_top = 552.0
 offset_right = 1679.0
@@ -196,6 +244,7 @@ text = "Quit"
 [connection signal="END_OF_DAY" from="Story Screen" to="." method="_on_end_of_day"]
 [connection signal="END_OF_STORY" from="Story Screen" to="." method="_on_end_of_story"]
 [connection signal="GAME_OVER" from="Story Screen" to="." method="_on_game_over"]
+[connection signal="pressed" from="Story Screen/Quit" to="." method="_on_quit_pressed"]
 [connection signal="ADVANCE_BEAT" from="Story Screen/Narration Dialog" to="Story Screen" method="_on_advance_beat"]
 [connection signal="pressed" from="Story Screen/Narration Dialog/MarginContainer/VBoxContainer/Advance Button" to="Story Screen/Narration Dialog" method="_on_advance_button_pressed"]
 [connection signal="SELECTED" from="Story Screen/Choices Dialog" to="Story Screen" method="_on_choice_selected"]

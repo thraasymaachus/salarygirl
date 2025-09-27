@@ -7,3 +7,5 @@ class_name StoryNode
 @export var jumpToNode:String
 @export var eod:bool = false
 @export var game_over:bool = false
+
+@export var beat_art:String

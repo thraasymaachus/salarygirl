@@ -6,6 +6,9 @@ signal END_OF_DAY
 
 @onready var narration_dialog = $"Narration Dialog"
 @onready var choices_dialog = $"Choices Dialog"
+@onready var status_bar = $"Status Bar"
+@onready var quit = $"Quit"
+@onready var background = $"Control/Background"
 
 var start_beat
 var current_beat
@@ -25,12 +28,22 @@ func startStory():
 	current_beat = start_beat
 	narrate(current_beat)
 	choices_dialog.visible = false
+	background.visible = true
 
 
 func narrate(beat):
 	narration_dialog.visible = true
 	narration_dialog.text = beat.text
+	
+	var art = beat.beat_art
+	
+	# If no art set, use a placeholder
+	if (!art):
+		art = "testart.png"
+	
+	background.texture = load("res://art/beats/{s}".format({"s": art}))
 	narration_dialog.get_node("MarginContainer/VBoxContainer/Advance Button").visible = true
+	print(GlobalState.inventory)
 
 
 func _on_advance_beat():
@@ -57,6 +70,14 @@ func _on_choice_selected(choice_index: int) -> void:
 	choices_dialog.visible = false
 	
 	current_beat = start_beat.get_node(ch.target_path)
+	
+	# Update Status Bar
+	# Items
+	status_bar.updateItems(GlobalState.inventory)
+	
+	# Status
+	$"Status Bar/MarginContainer/Stats/MentalHealthLabel".text = "HP: {s}".format({"s": GlobalState.mental_health})
+	$"Status Bar/MarginContainer/Stats/MoneyLabel".text = "$: {s}".format({"s": GlobalState.money})
 	
 	if current_beat is CheckNode:
 		handleCheckNode(current_beat)

@@ -12,13 +12,7 @@ var karma: int = 0
 
 # Flags
 var flags: Dictionary
-var inventory: Dictionary
-
-# Test Flags
-var hasEgg: bool = false
-var hasShovel: bool = true
-
-
+var inventory: Array[String]
 
 ### Scenes ###
 # Load the first scene, updated based on day
@@ -37,7 +31,7 @@ func apply_choice_effects(ch: Choice) -> void:
 	for f in ch.remove_flags: flags.erase(f)
 
 	# Inventory
-	for it in ch.add_items:    inventory[it] = (inventory.get(it, 0) + 1)
+	for it in ch.add_items:    inventory.append(it)
 	for it in ch.remove_items: inventory.erase(it)
 
 	# Optional hook. This means that I can link code execution to a particular choice. Cool!

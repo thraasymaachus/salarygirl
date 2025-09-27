@@ -47,3 +47,7 @@ func _on_end_of_day() -> void:
 func _on_game_over() -> void:
 	story_screen.visible = false
 	game_over_screen.visible = true
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
