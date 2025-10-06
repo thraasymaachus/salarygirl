@@ -3,6 +3,7 @@ extends Control
 signal END_OF_STORY
 signal GAME_OVER
 signal END_OF_DAY
+signal RESTART_STORY
 
 @onready var narration_dialog = $"Narration Dialog"
 @onready var choices_dialog = $"Choices Dialog"
@@ -29,6 +30,7 @@ func startStory():
 	narrate(current_beat)
 	choices_dialog.visible = false
 	background.visible = true
+	status_bar.updateItems(GlobalState.inventory)
 
 
 func narrate(beat):

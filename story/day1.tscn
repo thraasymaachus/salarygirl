@@ -200,7 +200,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 [sub_resource type="Resource" id="Resource_xq4tt"]
 script = ExtResource("2_tv5ry")
 text = "Respect the road rules."
-target_path = "Get Up/Cyclist/Hit Cyclist"
+target_path = "Get Up/Cyclist/Avoid Cyclist"
 fail_behavior = 1
 disabled_reason = "You can’t do that right now."
 delta_mental_health = 0
@@ -421,7 +421,7 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 script = ExtResource("1_7amp7")
 text = "Salary girl wakes up to the ringing of her alarm. The sky outside is dark."
 choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_wfq44"), SubResource("Resource_tv5ry"), SubResource("Resource_wldhf"), SubResource("Resource_nnafw")])
-beat_art = "default.png"
+beat_art = "Start the Story.png"
 
 [node name="Snooze Alarm" type="Node" parent="."]
 script = ExtResource("1_7amp7")
@@ -740,7 +740,10 @@ text = "You open the mailbox.  Inside is a pile of junk mail from a different ga
 
 [node name="Lunch" type="Node" parent="."]
 script = ExtResource("1_7amp7")
-text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+text = "You made it to lunchtime. What adventure awaits?
+
+This is all I've done so far. But there's more to come. If you're Ruby de Beus and you're reading this, that means u got to play the prerelease of Salary Girl on your birthday. I love you!"
+eod = true
 
 [node name="End of Work" type="Node" parent="."]
 script = ExtResource("1_7amp7")

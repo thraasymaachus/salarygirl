@@ -11,8 +11,8 @@ var money: int = 20
 var karma: int = 0
 
 # Flags
-var flags: Dictionary
-var inventory: Array[String]
+var flags: Dictionary = {}
+var inventory: Array[String] = []
 
 ### Scenes ###
 # Load the first scene, updated based on day
@@ -37,3 +37,21 @@ func apply_choice_effects(ch: Choice) -> void:
 	# Optional hook. This means that I can link code execution to a particular choice. Cool!
 	if ch.on_select_hook != "" and has_method(ch.on_select_hook):
 		call(ch.on_select_hook)
+
+func instantiate_global_variables():
+		### Basic global variables ###
+	# Game vars
+	var day: int = 1
+
+	# Player vars
+	var mental_health: int = 100
+	var money: int = 20
+	var karma: int = 0
+
+	# Flags
+	var flags: Dictionary = {}
+	var inventory: Array[String] = []
+
+	### Scenes ###
+	# Load the first scene, updated based on day
+	var story_flow: PackedScene = preload("res://story/day1.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cstmar211pvqk"]
+[gd_scene load_steps=17 format=3 uid="uid://cstmar211pvqk"]
 
 [ext_resource type="Script" uid="uid://llemomb5pi56" path="res://scripts/Game.gd" id="1_dlrd2"]
 [ext_resource type="Script" uid="uid://bbjvrv5w5u77c" path="res://scripts/Story.gd" id="2_eu8vd"]
@@ -8,8 +8,10 @@
 [ext_resource type="VideoStream" uid="uid://chq5w4vvobuje" path="res://art/intro/davinci_loop.ogv" id="4_hve3p"]
 [ext_resource type="Script" uid="uid://bwiuiomqoeg54" path="res://scripts/ui/StatusBar.gd" id="4_ryrav"]
 [ext_resource type="Script" uid="uid://deidpbpa7sqkq" path="res://scripts/ui/ChoicesDialog.gd" id="4_um3na"]
-[ext_resource type="Texture2D" uid="uid://c58m5mg8t2cwq" path="res://art/item_sprites/shovel.png" id="7_hve3p"]
+[ext_resource type="Script" uid="uid://bxgol0g5phnq7" path="res://release_label_color_cycle.gd" id="5_iotsf"]
+[ext_resource type="Texture2D" uid="uid://c58m5mg8t2cwq" path="res://art/item_sprites/Shovel.png" id="7_hve3p"]
 [ext_resource type="Texture2D" uid="uid://baru3d4e3unax" path="res://art/beats/default.png" id="9_vef74"]
+[ext_resource type="Script" uid="uid://b4re8ud3gelmr" path="res://scripts/GameOver.gd" id="11_mfdv2"]
 
 [sub_resource type="GDScript" id="GDScript_vef74"]
 script/source = "extends Button
@@ -26,7 +28,6 @@ bg_color = Color(0.192157, 0.192157, 0.192157, 1)
 script = ExtResource("1_dlrd2")
 
 [node name="Title Screen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +63,20 @@ script = ExtResource("3_vef74")
 first_video = ExtResource("2_j5wjh")
 loop_video = ExtResource("4_hve3p")
 
+[node name="Release" type="Label" parent="Title Screen"]
+layout_mode = 0
+offset_left = 1432.0
+offset_top = 41.0
+offset_right = 1919.0
+offset_bottom = 173.0
+rotation = 0.261799
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Birthday Pre-Release! (Alpha v0.9)"
+script = ExtResource("5_iotsf")
+
 [node name="Story Screen" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -224,6 +238,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("11_mfdv2")
 
 [node name="Again" type="Button" parent="Game Over Screen"]
 layout_mode = 0
@@ -248,3 +263,6 @@ text = "Quit"
 [connection signal="ADVANCE_BEAT" from="Story Screen/Narration Dialog" to="Story Screen" method="_on_advance_beat"]
 [connection signal="pressed" from="Story Screen/Narration Dialog/MarginContainer/VBoxContainer/Advance Button" to="Story Screen/Narration Dialog" method="_on_advance_button_pressed"]
 [connection signal="SELECTED" from="Story Screen/Choices Dialog" to="Story Screen" method="_on_choice_selected"]
+[connection signal="RESTART_STORY" from="Game Over Screen" to="." method="_on_game_over_screen_restart_story"]
+[connection signal="pressed" from="Game Over Screen/Again" to="Game Over Screen" method="_on_again_pressed"]
+[connection signal="pressed" from="Game Over Screen/Quit" to="Game Over Screen" method="_on_quit_pressed"]

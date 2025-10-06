@@ -8,6 +8,8 @@ var canStart := false
 @onready var story_screen = $"Story Screen"
 @onready var game_over_screen = $"Game Over Screen"
 @onready var start_message = $"Title Screen/New Game Prompt"
+@onready var release = $"Title Screen/Release"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,9 +17,11 @@ func _ready():
 	story_screen.visible = false
 	game_over_screen.visible = false
 	start_message.visible = false
-	await get_tree().create_timer(5.0).timeout
+	release.visible = false
+	await get_tree().create_timer(6.0).timeout
 	canStart = true
 	start_message.visible = true
+	release.visible = true
 
 # BASE UI NAVIGATION
 func _input(event):
@@ -51,3 +55,11 @@ func _on_game_over() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_game_over_screen_restart_story() -> void:
+	GlobalState.instantiate_global_variables()
+		
+	game_over_screen.visible = false
+	story_screen.visible = true
+	story_screen.startStory()
