@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ct6362a458c6s"]
+[gd_scene load_steps=29 format=3 uid="uid://ct6362a458c6s"]
 
 [ext_resource type="Script" uid="uid://byfsteivtt8ak" path="res://scripts/StoryNode.gd" id="1_7amp7"]
 [ext_resource type="Script" uid="uid://bnojy1tfv5ys" path="res://scripts/CheckNode.gd" id="2_0viuc"]
@@ -33,38 +33,6 @@ delta_karma = 0
 add_flags = Array[String]([])
 remove_flags = Array[String]([])
 add_items = Array[String]([])
-remove_items = Array[String]([])
-on_select_hook = ""
-metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
-
-[sub_resource type="Resource" id="Resource_wldhf"]
-script = ExtResource("2_tv5ry")
-text = "Probability Test"
-target_path = "Check Probability Test"
-fail_behavior = 1
-disabled_reason = "You can’t do that right now."
-delta_mental_health = 0
-delta_money = 0
-delta_karma = 0
-add_flags = Array[String]([])
-remove_flags = Array[String]([])
-add_items = Array[String]([])
-remove_items = Array[String]([])
-on_select_hook = ""
-metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
-
-[sub_resource type="Resource" id="Resource_nnafw"]
-script = ExtResource("2_tv5ry")
-text = "Hidden and Grayed Options"
-target_path = "Hidden and Grayed Options"
-fail_behavior = 1
-disabled_reason = "You can’t do that right now."
-delta_mental_health = 0
-delta_money = 0
-delta_karma = 0
-add_flags = Array[String]([])
-remove_flags = Array[String]([])
-add_items = Array[String](["Shovel", "Goomba"])
 remove_items = Array[String]([])
 on_select_hook = ""
 metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
@@ -420,20 +388,18 @@ metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 [node name="Start the Story" type="Node"]
 script = ExtResource("1_7amp7")
 text = "Salary girl wakes up to the ringing of her alarm. The sky outside is dark."
-choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_wfq44"), SubResource("Resource_tv5ry"), SubResource("Resource_wldhf"), SubResource("Resource_nnafw")])
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_wfq44"), SubResource("Resource_tv5ry")])
 beat_art = "Start the Story.png"
 
 [node name="Snooze Alarm" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "Salary girl hits the snooze button. Another 5 minutes, please."
 jumpToNode = "Snooze Alarm/Second Alarm"
-beat_art = "testart.png"
 
 [node name="Second Alarm" type="Node" parent="Snooze Alarm"]
 script = ExtResource("1_7amp7")
 text = "After what feels like seconds, the alarm rings again. Ueuuughhhh."
 choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_87jn7"), SubResource("Resource_rd737")])
-beat_art = "default.png"
 
 [node name="Snooze Alarm Again" type="Node" parent="Snooze Alarm/Second Alarm"]
 script = ExtResource("1_7amp7")

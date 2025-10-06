@@ -37,11 +37,26 @@ func narrate(beat):
 	narration_dialog.visible = true
 	narration_dialog.text = beat.text
 	
-	var art = beat.beat_art
+	var art: String
+	
+	var default_art = "default.png"
+	var custom_art = beat.beat_art # "something.png"
+	var node_art = "{s}.png".format({"s": beat.name}) # "node1.png"
+
+	print("Choices are default ({d}), custom ({c}), and node ({n})".format({"d": default_art, "c": custom_art, "n": node_art}))
+
 	
 	# If no art set, use a placeholder
-	if (!art):
-		art = "testart.png"
+	if (custom_art != ""):
+		if ResourceLoader.exists("res://art/beats/{s}".format({"s": custom_art})):
+			art = custom_art
+		print("chose custom ({s})".format({"s": art}))
+	elif ResourceLoader.exists("res://art/beats/{s}".format({"s": node_art})):
+		art = node_art
+		print("chose node ({s})".format({"s": art}))
+	else:
+		art = default_art
+		print("chose default ({s})".format({"s": art}))
 	
 	background.texture = load("res://art/beats/{s}".format({"s": art}))
 	narration_dialog.get_node("MarginContainer/VBoxContainer/Advance Button").visible = true

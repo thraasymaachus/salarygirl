@@ -8,4 +8,5 @@ class_name StoryNode
 @export var eod:bool = false
 @export var game_over:bool = false
 
-@export var beat_art:String
+# If unspecified, it will try to use "res://art/beats/<nodename>.png". If that doesn't exist, it will use the default image
+@export var beat_art:String = ""
