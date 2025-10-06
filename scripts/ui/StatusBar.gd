@@ -5,8 +5,11 @@ extends PanelContainer
 @onready var item_blown_up := $"Item Blown Up View"
 
 var all_items: Dictionary = {
-	"Shovel": Item.new("Shovel", "A digging instrument.", "shovel.png"),
-	"Goomba": Item.new("Goomba", "A super mario guy. White people are jacking off to it.", "goomba.png")
+	"Shovel": Item.new("Shovel", "A digging instrument.", "Shovel.png"),
+	"Goomba": Item.new("Goomba", "A super mario guy. White people are jacking off to it.", "Goomba.png"),
+	"Bread": Item.new("Bread", "Tasty bread.", "Bread.png"),
+	"Eggs": Item.new("Eggs", "Came out of a bird", "Eggs.png"),
+	"Mac n Cheese": Item.new("Mac n Cheese", "Cheesy goodness!", "Mac n Cheese.png")
 }
 
 # We set items using an Array[String] of the item names, and the result is an Array[Item]

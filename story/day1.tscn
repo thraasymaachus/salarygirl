@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ct6362a458c6s"]
+[gd_scene load_steps=36 format=3 uid="uid://ct6362a458c6s"]
 
 [ext_resource type="Script" uid="uid://byfsteivtt8ak" path="res://scripts/StoryNode.gd" id="1_7amp7"]
 [ext_resource type="Script" uid="uid://bnojy1tfv5ys" path="res://scripts/CheckNode.gd" id="2_0viuc"]
@@ -385,6 +385,117 @@ remove_items = Array[String]([])
 on_select_hook = ""
 metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
 
+[sub_resource type="Resource" id="Resource_wldhf"]
+script = ExtResource("2_tv5ry")
+text = "Endure it."
+target_path = "Get to Work/Meeting Sharon/Endure It"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = -10
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_nnafw"]
+script = ExtResource("2_tv5ry")
+text = "Help her."
+target_path = "Get to Work/Meeting Sharon/Help Her"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = -30
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String](["LikedBySharon"])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_y2m54"]
+script = ExtResource("2_tv5ry")
+text = "Brush her off."
+target_path = "Get to Work/Meeting Sharon/Brush Off"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String](["DislikedBySharon"])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_6bw2p"]
+script = ExtResource("4_wfq44")
+require_all_flags = Array[String]([])
+require_any_flags = Array[String]([])
+forbid_flags = Array[String]([])
+require_all_items = Array[String]([])
+require_any_items = Array[String](["Bread", "Eggs", "Mac n Cheese"])
+forbid_items = Array[String]([])
+min_mental_health = -999999
+min_money = -999999
+min_karma = -999999
+custom_check = ""
+metadata/_custom_type_script = "uid://3jeoxw2or0uv"
+
+[sub_resource type="Resource" id="Resource_i73le"]
+script = ExtResource("2_tv5ry")
+text = "[Mouthfood] Offer mouthfood. ⚄"
+target_path = "Get to Work/Meeting Sharon/Offer Mouthfood"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+enable_if = SubResource("Resource_6bw2p")
+delta_mental_health = 0
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_go2gk"]
+script = ExtResource("2_tv5ry")
+text = ""
+target_path = "Get to Work/Meeting Sharon/Offer Mouthfood/Check Accept Mouthfood/Thanks"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = 20
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String](["LikedBySharon"])
+remove_flags = Array[String](["Bread", "Eggs", "Mac n Cheese"])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
+[sub_resource type="Resource" id="Resource_y1h3k"]
+script = ExtResource("2_tv5ry")
+text = ""
+target_path = "Get to Work/Meeting Sharon/Offer Mouthfood/Check Accept Mouthfood/No Carbs"
+fail_behavior = 1
+disabled_reason = "You can’t do that right now."
+delta_mental_health = -20
+delta_money = 0
+delta_karma = 0
+add_flags = Array[String]([])
+remove_flags = Array[String]([])
+add_items = Array[String]([])
+remove_items = Array[String]([])
+on_select_hook = ""
+metadata/_custom_type_script = "uid://dnesk0ux1jjcr"
+
 [node name="Start the Story" type="Node"]
 script = ExtResource("1_7amp7")
 text = "Salary girl wakes up to the ringing of her alarm. The sky outside is dark."
@@ -552,157 +663,172 @@ jumpToNode = "Get to Work/Meeting Sharon"
 [node name="Meeting Sharon" type="Node" parent="Get to Work"]
 script = ExtResource("1_7amp7")
 text = "Sharon complains about her kids, by the printer."
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_wldhf"), SubResource("Resource_nnafw"), SubResource("Resource_y2m54"), SubResource("Resource_i73le")])
 
 [node name="Endure It" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
 text = "Salary girl endures the woman's torrent."
-jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
+jumpToNode = "Computer Time"
 
 [node name="Help Her" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
 text = "Salary girl listens to Sharon describe her sons' rectal problems. Salary girl musters up words of support for Sharon and her kin.
-SIGNAL: SHARON'LL REMEMBER IT"
-jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
+
+Sharon will remember your kindness."
+jumpToNode = "Computer Time"
 
 [node name="Brush Off" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
 text = "As Sharon tries to pronounce syphillis, Salary girl stutters some words about being quite busy, and stumbles away.
 SIGNAL: SHARON'LL REMEMBER IT"
-jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
+jumpToNode = "Computer Time"
 
 [node name="Offer Mouthfood" type="Node" parent="Get to Work/Meeting Sharon"]
 script = ExtResource("1_7amp7")
-text = "Salary girl yanks the {whatever food was chosen} from her mouth and offers it up to Sharon.
+text = "Salary girl yanks the food from her mouth and offers it up to Sharon.
 
 At first, she's stunned."
+jumpToNode = "Get to Work/Meeting Sharon/Offer Mouthfood/Check Accept Mouthfood"
 
-[node name="No Carbs" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood"]
+[node name="Check Accept Mouthfood" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood"]
+script = ExtResource("2_0viuc")
+choices = Array[ExtResource("2_tv5ry")]([SubResource("Resource_go2gk"), SubResource("Resource_y1h3k")])
+prob_dist = Array[float]([0.8, 0.2])
+metadata/_custom_type_script = "uid://bnojy1tfv5ys"
+
+[node name="Thanks" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood/Check Accept Mouthfood"]
+script = ExtResource("1_7amp7")
+text = "\"ouh um hey thansk! i was actualy hungry\".
+
+Sharon will remember this."
+jumpToNode = "Computer Time"
+
+[node name="No Carbs" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood/Check Accept Mouthfood"]
 script = ExtResource("1_7amp7")
 text = "\"..... I don't eat carbs.\"
 
-The rejection stings"
-jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
+The rejection stings."
+jumpToNode = "Computer Time"
 
-[node name="Thanks" type="Node" parent="Get to Work/Meeting Sharon/Offer Mouthfood"]
+[node name="Computer Time" type="Node" parent="."]
 script = ExtResource("1_7amp7")
-text = "\"ouh um hey thansk! i was actualy hungry\"
-SIGNAL: SHARON'LL REMEMBER THAT"
-jumpToNode = "Get to Work/Meeting Sharon/Computer Time"
+text = "Computer time. whacha doing?
 
-[node name="Computer Time" type="Node" parent="Get to Work/Meeting Sharon"]
-script = ExtResource("1_7amp7")
-text = "Computer time. whacha doing?"
+This is all I've done so far. But there's more to come. If you're Ruby de Beus and you're reading this, that means u got to play the prerelease of Salary Girl on your birthday. I love you!"
 
-[node name="Search" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
+[node name="Search" type="Node" parent="Computer Time"]
 script = ExtResource("1_7amp7")
 text = "Ok buddy. What do you want to search for?"
 
-[node name="Current Events" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Current Events" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "Salary girl scrolls through the news. It's not good."
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
-[node name="Heartwarming Vids" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Heartwarming Vids" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "A blind monkey learns to love. A mouse gets a succesful louse transplant. "
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
-[node name="Bomb" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Bomb" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "Salary girl learns how to build a bomb. She will need 1 kg of magnesium surfaldihyde, to 4 kg of liquid nitrogen."
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Search/Popup"
 
-[node name="Popup" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Popup" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "A popup hits the screen
 
 \"Make money fast? It can be you\""
 
-[node name="Win" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Win" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "It's not a scam. hoorah. $200 earned"
 jumpToNode = "Lunch"
 
-[node name="Virus" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Search"]
+[node name="Virus" type="Node" parent="Computer Time/Search"]
 script = ExtResource("1_7amp7")
 text = "BZZdD. Salary girl hears the crackle of electricity in the air, as the screens in her office all turn red. Computer virus."
 jumpToNode = "Disciplinary Meeting"
 
-[node name="Game" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
+[node name="Game" type="Node" parent="Computer Time"]
 script = ExtResource("1_7amp7")
 text = "MAKE THIS NODE INTO A REAL GAME."
 
-[node name="Suspicion" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game"]
+[node name="Suspicion" type="Node" parent="Computer Time/Game"]
 script = ExtResource("1_7amp7")
 text = "Salary girl's manager, Gina, walks past her desk.
 
 (50/50 chance to go to discilpinary meeting or lunch)"
 
-[node name="Caught" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game/Suspicion"]
+[node name="Caught" type="Node" parent="Computer Time/Game/Suspicion"]
 script = ExtResource("1_7amp7")
 text = "Gina makes a loud ass grunt, and Salary girl whips her head around.
 
 \"Disciplinary meeting, now!\""
 jumpToNode = "Disciplinary Meeting"
 
-[node name="Not Caught" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Game/Suspicion"]
+[node name="Not Caught" type="Node" parent="Computer Time/Game/Suspicion"]
 script = ExtResource("1_7amp7")
 text = "Gina walks by, none the wiser. A smirk curls onto Salary girl's nice face."
 jumpToNode = "Lunch"
 
-[node name="Mail" type="Node" parent="Get to Work/Meeting Sharon/Computer Time"]
+[node name="Mail" type="Node" parent="Computer Time"]
 script = ExtResource("1_7amp7")
 text = "Who are u emailing?"
 
-[node name="Sharon" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail"]
+[node name="Sharon" type="Node" parent="Computer Time/Mail"]
 script = ExtResource("1_7amp7")
 text = "To: Sharon Welks
 
 TEXT ENTRY BOX!!"
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Mail/Sharon/Sharon Reply"
 
-[node name="Sharon Reply" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Sharon"]
+[node name="Sharon Reply" type="Node" parent="Computer Time/Mail/Sharon"]
 script = ExtResource("1_7amp7")
 text = "Reply from sharon, based on likedBySharon gamestate."
 jumpToNode = "Lunch"
 
-[node name="Gina" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail"]
+[node name="Gina" type="Node" parent="Computer Time/Mail"]
 script = ExtResource("1_7amp7")
 text = "To: Gina Olsen
 
 TEXT ENTRY BOX!!"
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"
 
-[node name="Gina Reply" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina"]
+[node name="Gina Reply" type="Node" parent="Computer Time/Mail/Gina"]
 script = ExtResource("1_7amp7")
 text = "Reply from gina. based on the tone/content, you can get a raise, improve standing with gina, or need to go for a disciplinary meeeting right now."
 
-[node name="golunch" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"]
+[node name="golunch" type="Node" parent="Computer Time/Mail/Gina/Gina Reply"]
 script = ExtResource("1_7amp7")
 text = "You head to the lunchroom
 "
 jumpToNode = "Lunch"
 
-[node name="gomeeting" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Gina/Gina Reply"]
+[node name="gomeeting" type="Node" parent="Computer Time/Mail/Gina/Gina Reply"]
 script = ExtResource("1_7amp7")
 text = "You head to the discipline room."
 jumpToNode = "Disciplinary Meeting"
 
-[node name="Godwin" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail"]
+[node name="Godwin" type="Node" parent="Computer Time/Mail"]
 script = ExtResource("1_7amp7")
 text = "To: Godwin Voss
 
 TEXT ENTRY BOX!!"
 jumpToNode = "Get to Work/Meeting Sharon/Computer Time/Mail/Godwin/Godwin Reply"
 
-[node name="Godwin Reply" type="Node" parent="Get to Work/Meeting Sharon/Computer Time/Mail/Godwin"]
+[node name="Godwin Reply" type="Node" parent="Computer Time/Mail/Godwin"]
 script = ExtResource("1_7amp7")
 text = "Reply from Godwin. He'll say some weird shit, and you'll improve standing with him no matter what you say"
 jumpToNode = "Lunch"
 
 [node name="Disciplinary Meeting" type="Node" parent="."]
 script = ExtResource("1_7amp7")
-text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+text = "You arrive at the disciplinary meeting. What adventure awaits?
+
+This is all I've done so far. But there's more to come. If you're Ruby de Beus and you're reading this, that means u got to play the prerelease of Salary Girl on your birthday. I love you!"
+eod = true
 
 [node name="Lunch" type="Node" parent="."]
 script = ExtResource("1_7amp7")
@@ -714,6 +840,7 @@ eod = true
 [node name="End of Work" type="Node" parent="."]
 script = ExtResource("1_7amp7")
 text = "You open the mailbox.  Inside is a pile of junk mail from a different game entirely."
+eod = true
 
 [node name="Game Over" type="Node" parent="."]
 script = ExtResource("1_7amp7")
